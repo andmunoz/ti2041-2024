@@ -9,21 +9,20 @@ Cualquier consulta o aporte, puedes contactar a tu profesor a su correo electró
 ## Recomendaciones para los Estudiantes
 Para participar en el curso, es importante que cada estudiante tenga su propio repositorio GitHub para él. Recuede crear su repositorio con el mismo nombre que este repo: 
 
-**ti2041-2024**
+<code>**ti2041-2024**</code>
 
 Este repositorio, debe clonarlo localmente en su computadora personal, en el computador de la sede donde va a trabajar, a través del comando: 
 
-**clone *[url del repositorio]***
+<code>**clone *[url del repositorio]***</code>
 
 Una vez realizado ésto, usted debe configurar, por única vez si es en su computador personal, o cada vez que clone por primera vez el repositorio en una computadora en la sede, su configuración global de usuario: 
 
-**git config --global user.name "*[su nombre real]*"**
-
-**git config --global user.email *[su correo]***
+<code>**git config --global user.name "*[su nombre real]*"**</code>
+<code>**git config --global user.email *[su correo]***</code>
 
 Cuando vaya a trabajar en la carpeta local, dentro del repositorio, debe crear las sub-carpetas: 
-- ejercicios
-- evaluaciones
+- <code>/ejercicios</code>
+- <code>/evaluaciones</code>
 
 Recuerde que estas carpetas no se van a subir al repo mientras no tengan contenido (archivos).
 
@@ -35,4 +34,4 @@ Recuerde que estas carpetas no se van a subir al repo mientras no tengan conteni
 - [Django](https://www.djangoproject.com/): Framework de desarrollo back-end para Python.
 - [DjangoRest](https://www.django-rest-framework.org/): Framework de desarrollo de API's para Python.
 
-**Nota**: PIP, Django y DjangoRest se descargan utilizando Python directamente, no requiere una instalación manual.
+**Nota**: **PIP**, **Django** y **DjangoRest** se descargan utilizando Python directamente, no requiere una instalación manual.
