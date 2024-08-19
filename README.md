@@ -18,6 +18,7 @@ Este repositorio, debe clonarlo localmente en su computadora personal, en el com
 Una vez realizado ésto, usted debe configurar, por única vez si es en su computador personal, o cada vez que clone por primera vez el repositorio en una computadora en la sede, su configuración global de usuario: 
 
 <code>**git config --global user.name "*[su nombre real]*"**</code>
+
 <code>**git config --global user.email *[su correo]***</code>
 
 Cuando vaya a trabajar en la carpeta local, dentro del repositorio, debe crear las sub-carpetas: 
