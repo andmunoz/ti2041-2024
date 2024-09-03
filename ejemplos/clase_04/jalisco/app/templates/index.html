@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Agregando un CSS externo -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Agregando un CSS interno -->
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    
+    <title>Jalisco</title>
+</head>
+<body>
+    <h1>Jalisco</h1>
+    <p>Estoy pensando en un número entre 1 y 100. ¿Cuál crees que es?</p>
+    <form method="POST" action="/">
+        {% csrf_token %}
+        <label for="myNumber">Tu respuesta: </label>
+        <input type="number" id="myNumber" name="myNumber" value="{{ myNumber }}" />
+        <button type="submit">Responder</button>
+    </form>
+
+    <p>
+        {% if myNumber < 1 or myNumber > 100 %}
+            <b class="error">Hey!!! Eso es trampa, debe ser un número entre 1 y 100!!</b>
+        {% elif myNumber %}
+            <b class="success">Ja ja ja, te gané con el {{ myAnswer }}</b>
+        {% endif %}
+    </p>
+</body>
+</html>
