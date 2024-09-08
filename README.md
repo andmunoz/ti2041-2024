@@ -35,4 +35,10 @@ Recuerde que estas carpetas no se van a subir al repo mientras no tengan conteni
 - [Django](https://www.djangoproject.com/): Framework de desarrollo back-end para Python.
 - [DjangoRest](https://www.django-rest-framework.org/): Framework de desarrollo de API's para Python.
 
-**Nota**: **PIP**, **Django** y **DjangoRest** se descargan utilizando Python directamente, no requiere una instalación manual.
+**Nota**: **Django** y **DjangoRest** se descargan utilizando Python directamente, no requiere una instalación manual.
+
+### Instalación de Django
+
+<code>**python -m pip install Django==5.1.1**</code>
+
+<code>**py -m pip install Django==5.1.1**</code>
