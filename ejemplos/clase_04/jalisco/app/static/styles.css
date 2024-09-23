@@ -1,0 +1,12 @@
+h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: brown;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}
