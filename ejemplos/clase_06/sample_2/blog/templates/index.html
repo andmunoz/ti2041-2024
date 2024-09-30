@@ -1,0 +1,10 @@
+<ul>
+    {% for post in posts %}
+    <li>
+        [{{ post.category }}] 
+        {{ post.title }} 
+        (por {{ post.author }}, 
+        publicado el {{ post.publish_date }})
+    </li>
+    {% endfor %}
+</ul>
