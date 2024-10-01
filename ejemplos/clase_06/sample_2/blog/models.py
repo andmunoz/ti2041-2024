@@ -13,20 +13,22 @@ class CommonInfo(models.Model):
 class Category(CommonInfo):
     id_category = models.AutoField(primary_key=True)
     
+
 class Tag(CommonInfo):
     id_tag = models.AutoField(primary_key=True)
 
+
 class Post(models.Model):
-    # AUTORES = {
-    #    "AMO": "Andrés Muñoz Órdenes",
-    #    "VAF": "Verónica Astorga Figueroa",
-    #    "JPC": "Juan Pérez Cotapos"
-    #}
+    AUTHORS = {
+        "AMO": "Andrés Muñoz Órdenes",
+        "VAF": "Verónica Astorga Figueroa",
+        "JPC": "Juan Pérez Cotapos", 
+    }
     
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=100)
     text = models.TextField(max_length=1000)
-    author = models.CharField(max_length=3)
+    author = models.CharField(max_length=3, choices=AUTHORS)
     category = models.ForeignKey(Category, null=True, on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tag)
     publish_date = models.DateField(default=timezone.now)
