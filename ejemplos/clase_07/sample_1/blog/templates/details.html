@@ -1,0 +1,29 @@
+<ul>
+    <li>Categoría: {{ post.category }}</li>
+    <li>Título: {{ post.title }}</li>
+    <li>Autor: {{ post.author }}</li>
+    <li>{{ post.text }}</li>
+    <li>
+        Etiquetas: 
+        {% for tag in tags %}
+            {{ tag }}, 
+        {% endfor %}
+    </li>
+    <li>Fecha de Publicación: {{ post.publish_date }}</li>
+</ul>
+
+
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="name">
+    <button type="submit">Enviar</button>
+</form>
+
+
+<!-- Django escapa automáticamente el contenido -->
+<p>{{ user_input }}</p>
+
+ 
+<!-- Django permite mostrar HTML seguro también -->
+<p>{{ user_input|safe }}</p>
+

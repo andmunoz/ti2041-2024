@@ -1,0 +1,13 @@
+<ul>
+    <li>Categoría: {{ post.category }}</li>
+    <li>Título: {{ post.title }}</li>
+    <li>Autor: {{ post.author }}</li>
+    <li>{{ post.text }}</li>
+    <li>
+        Etiquetas: 
+        {% for tag in tags %}
+            {{ tag }}, 
+        {% endfor %}
+    </li>
+    <li>Fecha de Publicación: {{ post.publish_date }}</li>
+</ul>
