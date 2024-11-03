@@ -1,16 +1,38 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
+from .forms import PostForm
 from .models import Post, Tag, Category
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import permission_required, login_required
 
 
-# Create your views here.
+# Vistas para autenticar y desconectar al usuario
+def log_in(request):
+    if request.method == "POST":
+        usuario = request.POST['usuario']
+        clave = request.POST['clave']
+        user = authenticate(request, username=usuario, password=clave)
+        
+        if user is None:
+            return HttpResponse('Error de autenticación', status=401)
+
+        login(request, user=user)
+        return redirect('/')
+         
+    return render(request, 'login.html')
+
+
+def log_out(request):
+    logout(request)
+    return redirect('/')
+
+
+# Vista de inicio que muestra la lista de artículos
 def index(request):
     all_posts = Post.objects.all().order_by('publish_date')
     
     actual_posts = []
     for post in all_posts:
-        tags = Tag.objects.filter(post__id = post.id)
+        tags = post.tags.all()
         actual_post = {
             'id': post.id,
             'title': post.title,
@@ -21,39 +43,48 @@ def index(request):
         }
         actual_posts.append(actual_post)
     
-    context = { 'posts': actual_posts }
+    context = { 
+        'user_authenticated': request.user.is_authenticated, 
+        'posts': actual_posts 
+    }
     return render(request, 'index.html', context)
 
 
+# Vista de detalle de un artículo
 def details(request):
     post_id = int(request.GET.get('post_id'))
     post = Post.objects.get(id = post_id)
     tags = Tag.objects.filter(post__id = post_id)
     context = { 
-                'post': post,
-                'tags': tags 
-              }
+        'post': post,
+        'tags': tags 
+    }
     return render(request, 'details.html', context)
 
 
-def login(request):
+# Vista para crear un artículo (debe estar autenticado)
+@login_required(login_url='/login')
+def new_post(request):
     if request.method == "POST":
-        usuario = request.POST['usuario']
-        clave = request.POST['clave']
-        user = authenticate(request, username=usuario, password=clave)
-        
-        if user is not None:
-            login(request)
-            return new_form(request)
-         
-    return render(request, 'login.html')
-
-
-@login_required
-def new_form(request):
-    return render(request, 'new.html')
-
-
-def desconectarse(request):
-    logout(request)
-    return redirect('/')
+        form = PostForm(request.POST)
+        if form.is_valid(): 
+            post = form.save(commit=False) 
+            post.author = request.user
+            tag_list = request.POST.getlist('tags', [])
+            post.save()
+            post.tags.set(tag_list)
+            print(post.tags)
+            return redirect('/')
+        else:
+            print('Error en el Formulario')
+            print(form.errors)
+    
+    categories = Category.objects.all().order_by('description')
+    tags = Tag.objects.all().order_by('description')
+    form = PostForm()
+    context = {
+        'categories': categories,
+        'tags': tags,
+        'form': form
+    }
+    return render(request, 'new.html', context)

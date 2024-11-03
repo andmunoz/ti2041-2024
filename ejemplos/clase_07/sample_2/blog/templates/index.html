@@ -1,4 +1,9 @@
-<a href="login">Ingresar</a>
+{% if user_authenticated %}
+    <a href="new">Crear Artículo</a>
+    <a href="logout">Desconectarse</a>
+{% else %}
+    <a href="login">Ingresar</a>
+{% endif %}
 
 <ul>
     {% for post in posts %}
