@@ -70,8 +70,8 @@ def new_post(request):
         if form.is_valid(): 
             post = form.save(commit=False) 
             post.author = request.user
-            tag_list = request.POST.getlist('tags', [])
             post.save()
+            tag_list = request.POST.getlist('tags', [])
             post.tags.set(tag_list)
             return redirect('/')
         else:
