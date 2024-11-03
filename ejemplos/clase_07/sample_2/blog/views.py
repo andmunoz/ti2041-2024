@@ -73,7 +73,6 @@ def new_post(request):
             tag_list = request.POST.getlist('tags', [])
             post.save()
             post.tags.set(tag_list)
-            print(post.tags)
             return redirect('/')
         else:
             print('Error en el Formulario')
