@@ -53,8 +53,8 @@ def index(request):
 # Vista de detalle de un artículo
 def details(request):
     post_id = int(request.GET.get('post_id'))
-    post = Post.objects.get(id = post_id)
-    tags = Tag.objects.filter(post__id = post_id)
+    post = Post.objects.get(id=post_id)
+    tags = Post.tags.all()
     context = { 
         'post': post,
         'tags': tags 
