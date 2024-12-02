@@ -1,7 +1,7 @@
 from ninja import NinjaAPI, Schema
 from django.contrib.auth import authenticate
 from django.http import HttpRequest
-from .utils import generar_token, validar_token, JWTAuth
+from .utils import generar_token, JWTAuth
 
 api = NinjaAPI(
     title="API de Ejemplo",
