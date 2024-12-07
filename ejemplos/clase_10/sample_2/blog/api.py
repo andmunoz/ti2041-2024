@@ -46,14 +46,14 @@ def get_token(request, data: AuthRequest):
     return { "token": token }
 
 
-# @api.get(path="posts/", tags=["Posts"])   
-@api.api_operation(
-    path="posts/",
-    methods=["GET"],
-    summary="Lista de Artículos",
-    description="Se obtienen todos los artículos en orden de publicación",
-    tags=["Posts"]
-)
+@api.get(path="posts/", tags=["Posts"])   
+# @api.api_operation(
+#     path="posts/",
+#     methods=["GET"],
+#     summary="Lista de Artículos",
+#     description="Se obtienen todos los artículos en orden de publicación",
+#     tags=["Posts"]
+# )
 def get_posts(request):
     all_posts = Post.objects.all().order_by('publish_date').values()
     return list(all_posts)
