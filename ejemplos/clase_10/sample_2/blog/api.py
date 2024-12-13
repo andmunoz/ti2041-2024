@@ -46,7 +46,7 @@ def get_token(request, data: AuthRequest):
     return { "token": token }
 
 
-@api.get(path="posts/", tags=["Posts"])   
+@api.get(path="posts/", auth=auth, tags=["Posts"])   
 # @api.api_operation(
 #     path="posts/",
 #     methods=["GET"],

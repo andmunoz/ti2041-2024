@@ -4,7 +4,7 @@ from .forms import UserCreateForm, UserEditForm
 
 def list_users(request):
     usuarios = User.objects.all()
-    return render(request, "users/list_users.html", {"usuarios": usuarios})
+    return render(request, "list_users.html", {"usuarios": usuarios})
 
 def create_user(request):
     if request.method == "POST":
@@ -16,7 +16,7 @@ def create_user(request):
             return redirect("list_users")
     else:
         form = UserCreateForm()
-    return render(request, "users/create_user.html", {"form": form})
+    return render(request, "create_user.html", {"form": form})
 
 
 def edit_user(request, user_id):
@@ -28,11 +28,11 @@ def edit_user(request, user_id):
             return redirect("list_users")
     else:
         form = UserEditForm(instance=user)
-    return render(request, "users/edit_user.html", {"form": form, "user": user})
+    return render(request, "edit_user.html", {"form": form, "user": user})
 
 def delete_user(request, user_id):
     user = get_object_or_404(User, id=user_id)
     if request.method == "POST":
         user.delete()
         return redirect("list_users")
-    return render(request, "users/delete_user.html", {"user": user})
+    return render(request, "delete_user.html", {"user": user})
